@@ -1,0 +1,17 @@
+.active {
+  color: $primaryColor;
+  background-color: $primaryColor-2;
+}
+
+.height-full {
+  max-height: 100vh;
+}
+.height-half-m {
+  height: 75vh;
+}
+.height-half {
+  height: 50vh;
+}
+.height-quater {
+  height: 25vh;
+}

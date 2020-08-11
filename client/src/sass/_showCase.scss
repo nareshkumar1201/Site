@@ -1,0 +1,55 @@
+.showCase {
+  width: 100vw;
+  height: 90vh;
+  // border: 2px solid red;
+  display: flex;
+
+  &--item {
+    width: 50vw;
+    height: auto;
+    // border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-1 {
+      display: flex;
+      flex-direction: column;
+      //  border: 2px solid blue;
+      clip-path: polygon(0 1%, 100% 0, 78% 100%, 0% 100%);
+      align-items: center;
+      &__title {
+        //  border: 2px solid red;
+        letter-spacing: 0.3rem;
+        color: $primaryColor;
+      }
+
+      &__caption {
+        //@debug   border: 2px solid white;
+        color: $primaryColor;
+        width: 25rem;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.formSection {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--item {
+    width: 80%;
+    // border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.formCard {
+  width: 80%;
+}

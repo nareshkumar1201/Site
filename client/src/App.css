@@ -1,0 +1,68 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
+
+html {
+  font-size: 10px; }
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400; }
+
+.showCase {
+  width: 100vw;
+  height: 90vh;
+  display: flex; }
+  .showCase--item {
+    width: 50vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .showCase--item-1 {
+      display: flex;
+      flex-direction: column;
+      clip-path: polygon(0 1%, 100% 0, 78% 100%, 0% 100%);
+      align-items: center; }
+      .showCase--item-1__title {
+        letter-spacing: 0.3rem;
+        color: #1dd1a1; }
+      .showCase--item-1__caption {
+        color: #1dd1a1;
+        width: 25rem;
+        text-align: center; }
+
+.formSection {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .formSection--item {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+
+.formCard {
+  width: 80%; }
+
+.navbar-custom {
+  background-color: #26a29a; }
+
+.active {
+  color: #1dd1a1;
+  background-color: #0c756e; }
+
+.height-full {
+  max-height: 100vh; }
+
+.height-half-m {
+  height: 75vh; }
+
+.height-half {
+  height: 50vh; }
+
+.height-quater {
+  height: 25vh; }
