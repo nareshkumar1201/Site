@@ -12,7 +12,10 @@ router.post(
   "/",
   [
     body("username", "username is required").not().isEmpty(),
-    body("email", "please enter valid email").isEmail(),
+    body(
+      "email",
+      "Not Registered,Please Enter Valid email-ex- abc@domainname.com"
+    ).isEmail(),
     body("password", "password must be min 8 char length").isLength({ min: 8 }),
   ],
   async (req, res, next) => {
@@ -62,7 +65,7 @@ router.post(
               .json({ errors: [{ msg: "unauthorised access denied" }] });
           }
           return res.json({
-            msg: "successfully registed",
+            msg: "successfully registered, Now Sign-In into your account",
             token: token,
           });
         }

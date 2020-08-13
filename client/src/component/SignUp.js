@@ -1,10 +1,17 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
 import AuthContext from "../context/authContext/AuthContext";
-import M from "materialize-css/dist/js/materialize.min.js";
+// import M from "materialize-css/dist/js/materialize.min.js";
+import AlertContext from "../context/alertContext/AlertContext";
 
 const SignUp = () => {
-  const authContext = useContext(AuthContext);
-  const { registerUser } = authContext;
+  const {
+    registerUser,
+    user_State,
+    error_State,
+    loading,
+    clearAuthErrors,
+  } = useContext(AuthContext);
+  const { showAlert } = useContext(AlertContext);
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -12,6 +19,25 @@ const SignUp = () => {
     confirmpwd: "",
   });
   const { username, email, password, confirmpwd } = user;
+
+  useEffect(
+    (e) => {
+      if (!loading && error_State !== null) {
+        error_State.map((err) => {
+          showAlert(err.msg, "danger");
+          clearAuthErrors();
+          // setUser({});
+        });
+      }
+
+      if (user_State !== null) {
+        showAlert(user_State.msg, "success", 4000);
+      }
+
+      // showAlert(msg, "success", 4000);
+    },
+    [error_State, loading, user_State]
+  );
 
   const onChange = (e) => {
     setUser({
@@ -23,11 +49,9 @@ const SignUp = () => {
     e.preventDefault();
     console.log("enter onSubmit in register");
     if (username === "" || email === "" || password === "") {
-      console.log("please enter all feilds");
-      alert("please enter all fields");
+      showAlert("please enter all fields", "danger");
     } else if (password !== confirmpwd) {
-      console.log("password should match");
-      alert("passwords should match");
+      showAlert("passwords should match", "danger");
     } else {
       console.log(user);
       const newUser = {
@@ -43,7 +67,11 @@ const SignUp = () => {
         confirmpwd: "",
       });
 
-      M.toast({ html: `Registerd Successfully` });
+      // showAlert(user_State.msg, "success", 4000);
+
+      // M.toast({
+      //   html: `Registerd Successfully --Now you can Login in to you account`,
+      // });
     }
   };
 
@@ -61,8 +89,8 @@ const SignUp = () => {
                       id="username"
                       name="username"
                       value={username}
-                      type="text"
                       className="validate"
+                      type="text"
                       onChange={onChange}
                     />
                     <label htmlFor="username">Enter Name</label>
@@ -76,8 +104,8 @@ const SignUp = () => {
                       name="email"
                       value={email}
                       type="email"
-                      className="validate"
                       onChange={onChange}
+                      className="validate"
                     />
                     <label htmlFor="useremail">Enter Email</label>
                     <span
@@ -97,8 +125,9 @@ const SignUp = () => {
                       name="password"
                       value={password}
                       type="password"
-                      className="validate"
                       onChange={onChange}
+                      className="validate"
+                      minLength={8}
                     />
                     <label htmlFor="userPwd">Password</label>
                   </div>
@@ -109,10 +138,11 @@ const SignUp = () => {
                     <input
                       id="confirmPwd"
                       type="password"
-                      className="validate"
                       name="confirmpwd"
                       value={confirmpwd}
                       onChange={onChange}
+                      className="validate"
+                      minLength={8}
                     />
                     <label htmlFor="confirmPwd">Confirm Password</label>
                   </div>

@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const middlewareAuth = require("../privateRoute/middlewareAuth");
 // login req authentication -POST req
 //functinalities --  check if user email registered (check details present in db)
 
@@ -29,9 +30,9 @@ router.post(
       }
       const isMatch = await bcrypt.compare(password, regUser.password);
       if (!isMatch) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: "password does not match" }] });
+        return res.status(400).json({
+          errors: [{ msg: "Password does not match with Registered password" }],
+        });
       }
 
       const payload = {
@@ -60,5 +61,19 @@ router.post(
     }
   }
 );
+
+// GET request after login in
+//access :private
+
+router.get("/", middlewareAuth, async (req, res, next) => {
+  try {
+    // console.log("requrested user id", req.user);
+    const user = await regDb.findById(req.user.id).select("-password");
+    return res.json(user);
+  } catch (err) {
+    // console.log(err.message);
+    return res.status(401).send("Server error");
+  }
+});
 
 module.exports = router;

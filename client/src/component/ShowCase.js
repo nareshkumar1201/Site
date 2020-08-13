@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import Alert from "./Alert";
 import { Route, Switch } from "react-router-dom";
 
 import showcaseImg from "../images/showcaseImg.jpg";
@@ -20,7 +21,9 @@ const ShowCase = () => {
       <div className="showCase--item showCase--item-2">
         {" "}
         <Fragment>
+          <Alert />
           <Switch>
+            {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
           </Switch>

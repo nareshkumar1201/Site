@@ -32,6 +32,11 @@ body {
         color: #1dd1a1;
         width: 25rem;
         text-align: center; }
+    .showCase--item-2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
 
 .formSection {
   width: 100%;
@@ -46,14 +51,32 @@ body {
     align-items: center; }
 
 .formCard {
-  width: 80%; }
+  width: 70%; }
+
+.input-field {
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.4rem !important; }
 
 .navbar-custom {
   background-color: #26a29a; }
 
-.active {
-  color: #1dd1a1;
-  background-color: #0c756e; }
+.alert {
+  width: 90%;
+  height: auto;
+  padding: 0.5rem;
+  margin: 1rem 0rem;
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.5rem; }
+  .alert-danger {
+    background-color: #ff6b6b;
+    color: #fff; }
+  .alert-success {
+    background-color: #33d9b2;
+    color: #fff; }
+  .alert-msg {
+    margin: 0rem 0.8rem; }
 
 .height-full {
   max-height: 100vh; }

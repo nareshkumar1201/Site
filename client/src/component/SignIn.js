@@ -1,9 +1,38 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useState, useContext, useEffect } from "react";
 import AuthContext from "../context/authContext/AuthContext";
+import AlertContext from "../context/alertContext/AlertContext";
+// import Alert from "./Alert";
+// import Home from "./Home";
 
-const SignIn = () => {
-  const authContext = useContext(AuthContext);
-  const { loginUser } = authContext;
+const SignIn = (props) => {
+  const {
+    loginUser,
+    error_State,
+    loading_State,
+    isAuthenticate,
+    clearAuthErrors,
+  } = useContext(AuthContext);
+
+  const { showAlert } = useContext(AlertContext);
+
+  useEffect(
+    (e) => {
+      if (!loading_State && error_State !== null) {
+        error_State.map((err) => {
+          // <Alert errormsg={err.msg} />;
+          // alert(err.msg);
+          showAlert(err.msg, "danger");
+          clearAuthErrors();
+        });
+      }
+      if (isAuthenticate) {
+        props.history.push("/");
+        //eslint-disable-next-line
+      }
+    },
+    [error_State, isAuthenticate === true]
+  );
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -19,20 +48,14 @@ const SignIn = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("register forom submited");
+    console.log("login form submited");
     e.preventDefault();
     if (email === "" || password === "") {
-      alert("please enter all fields");
+      showAlert("please enter all fields", "danger");
     } else {
-      alert("successfully register");
       loginUser({
         email,
         password,
-      });
-
-      setUser({
-        email: "",
-        password: "",
       });
     }
   };
@@ -75,6 +98,7 @@ const SignIn = () => {
                       type="password"
                       className="validate"
                       onChange={onChange}
+                      minLength={8}
                     />
                     <label htmlFor="userPwd">Password</label>
                   </div>
