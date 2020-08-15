@@ -3,8 +3,10 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Alert from "./Alert";
 import { Route, Switch } from "react-router-dom";
+// import Home from "./Dashbord/Home";
 
 import showcaseImg from "../images/showcaseImg.jpg";
+// import PrivateRoute from "./pvtRoute/PrivateRoute";
 
 const ShowCase = () => {
   return (
@@ -23,9 +25,9 @@ const ShowCase = () => {
         <Fragment>
           <Alert />
           <Switch>
-            {/* <Route exact path="/" component={Home} /> */}
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
+            {/* <PrivateRoute Route exact path="/" component={Home} /> */}
           </Switch>
         </Fragment>
       </div>

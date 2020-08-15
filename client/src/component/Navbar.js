@@ -9,9 +9,6 @@ const Navbar = () => {
             <a href="#!" className="brand-logo">
               {" "}
             </a>
-            <a href="#!" data-target="mobile-demo" className="sidenav-trigger">
-              <i className="material-icons">menu</i>
-            </a>
             <ul className="right">
               <li>
                 <Link to="/signup" className="active">
@@ -24,21 +21,6 @@ const Navbar = () => {
             </ul>
           </div>
         </nav>
-
-        <ul className="sidenav" id="mobile-demo">
-          <li>
-            <a href="#!">Item One</a>
-          </li>
-          <li>
-            <a href="#!">Item Two</a>
-          </li>
-          <li>
-            <a href="#!">Item Three</a>
-          </li>
-          <li>
-            <a href="#!">Item Four</a>
-          </li>
-        </ul>
       </div>
     </Fragment>
   );
